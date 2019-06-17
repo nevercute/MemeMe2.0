@@ -12,6 +12,7 @@
 		572F6D8622B7CF8F006CAF34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572F6D8422B7CF8F006CAF34 /* Main.storyboard */; };
 		572F6D8822B7CF91006CAF34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 572F6D8722B7CF91006CAF34 /* Assets.xcassets */; };
 		572F6D8B22B7CF91006CAF34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572F6D8922B7CF91006CAF34 /* LaunchScreen.storyboard */; };
+		572F6D9422B7DA24006CAF34 /* MemeImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F6D9322B7DA24006CAF34 /* MemeImagePickerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		572F6D8722B7CF91006CAF34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		572F6D8A22B7CF91006CAF34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		572F6D8C22B7CF91006CAF34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		572F6D9322B7DA24006CAF34 /* MemeImagePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeImagePickerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		572F6D7F22B7CF8F006CAF34 /* MeMe1.0 */ = {
 			isa = PBXGroup;
 			children = (
+				572F6D9222B7D6E5006CAF34 /* view_delegations */,
 				572F6D8022B7CF8F006CAF34 /* AppDelegate.swift */,
 				572F6D8222B7CF8F006CAF34 /* ViewController.swift */,
 				572F6D8422B7CF8F006CAF34 /* Main.storyboard */,
@@ -62,6 +65,14 @@
 				572F6D8C22B7CF91006CAF34 /* Info.plist */,
 			);
 			path = MeMe1.0;
+			sourceTree = "<group>";
+		};
+		572F6D9222B7D6E5006CAF34 /* view_delegations */ = {
+			isa = PBXGroup;
+			children = (
+				572F6D9322B7DA24006CAF34 /* MemeImagePickerDelegate.swift */,
+			);
+			path = view_delegations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +148,7 @@
 			files = (
 				572F6D8322B7CF8F006CAF34 /* ViewController.swift in Sources */,
 				572F6D8122B7CF8F006CAF34 /* AppDelegate.swift in Sources */,
+				572F6D9422B7DA24006CAF34 /* MemeImagePickerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

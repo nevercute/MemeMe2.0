@@ -9,12 +9,21 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var ImagePickerView: UIImageView!
+    
+    let imagePickerDelegate = MemeImagePickerDelegate()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
+    
+    @IBAction func pickAnImage(_ sender: Any) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = imagePickerDelegate
+        present(pickerController, animated: true, completion: nil)
+    }
+    
 }
 
