@@ -15,12 +15,11 @@ class MemeTextFieldDelegate: NSObject, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-//        NotificationCenter.default.post(Notification.init(name: UIResponder.keyboardWillShowNotification))
         return true;
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-//        NotificationCenter.default.post(Notification.init(name: UIResponder.keyboardWillShowNotification))
+        
     }
     
 }
