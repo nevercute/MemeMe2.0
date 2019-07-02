@@ -10,10 +10,12 @@ import Foundation
 import UIKit
 
 class MemeImagePickerDelegate: UIView, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    var image: UIImage?
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("Pick an image ")
         picker.dismiss(animated: true, completion: nil)
-        print("Dismissed ")
+        image = info[.originalImage] as! UIImage
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
