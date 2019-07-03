@@ -14,7 +14,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let topTextFieldDelegate = MemeTextFieldDelegate()
     let bottomTextFieldDelegate = MemeTextFieldDelegate()
     
-    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     
     @IBOutlet weak var imagePickerView: UIImageView!
     
@@ -130,9 +130,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.setTextFieldProps(self.bottomTextField)
         
         //share button settings
-        
-        self.shareButton.setTitleColor(.white, for: .normal)
-        self.shareButton.setTitleColor(.gray, for: .disabled)
         self.shareButton.isEnabled = false
         
     }

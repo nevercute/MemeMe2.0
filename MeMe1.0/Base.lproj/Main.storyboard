@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina5_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,41 +15,34 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MeMe1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yd6-V5-qJW">
-                                <rect key="frame" x="20" y="77" width="374" height="602"/>
+                                <rect key="frame" x="0.0" y="44" width="736" height="326"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nX-n0-axV">
-                                <rect key="frame" x="19" y="31" width="49" height="30"/>
-                                <state key="normal" title="SHARE"/>
-                                <connections>
-                                    <action selector="share" destination="BYZ-38-t0r" eventType="touchUpInside" id="vza-LV-WnD"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="TOP TEXT" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yNt-BD-TkK">
-                                <rect key="frame" x="90" y="113" width="234" height="30"/>
+                            <textField opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="TOP TEXT" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yNt-BD-TkK">
+                                <rect key="frame" x="90" y="93" width="556" height="41"/>
                                 <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="OV1-LC-e8N"/>
+                                    <constraint firstAttribute="height" constant="41" id="OV1-LC-e8N"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <textField opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="BOTTOM TEXT" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XCJ-Zl-xEN">
-                                <rect key="frame" x="90" y="616" width="234" height="30"/>
+                            <textField opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="BOTTOM TEXT" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XCJ-Zl-xEN">
+                                <rect key="frame" x="90" y="283" width="556" height="41"/>
                                 <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="uMe-qG-KU7"/>
+                                    <constraint firstAttribute="height" constant="41" id="uMe-qG-KU7"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e0Z-Nq-t7S">
-                                <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="48" width="1058" height="44"/>
                                 <color key="backgroundColor" red="0.9999127984046936" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <barButtonItem systemItem="add" id="gIV-eP-dlc">
@@ -66,28 +59,40 @@
                                 </items>
                                 <color key="tintColor" red="0.071974880993366241" green="0.081918828189373016" blue="0.98864263296127319" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sa5-2n-3oI">
+                                <rect key="frame" x="0.0" y="-322" width="1058" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="action" id="gtx-eu-9qB">
+                                        <connections>
+                                            <action selector="share" destination="BYZ-38-t0r" id="TQM-bJ-sHC"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="9nX-n0-axV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="19" id="22K-ED-3pa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="e0Z-Nq-t7S" secondAttribute="bottom" id="2TS-yV-l1S"/>
                             <constraint firstItem="XCJ-Zl-xEN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="90" id="6nU-Ih-AEP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yd6-V5-qJW" secondAttribute="trailing" constant="20" id="DTZ-ib-glO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sa5-2n-3oI" secondAttribute="trailing" id="AGP-Up-bkc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yd6-V5-qJW" secondAttribute="trailing" id="DTZ-ib-glO"/>
                             <constraint firstItem="yd6-V5-qJW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="HWw-1s-WVM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9nX-n0-axV" secondAttribute="trailing" symbolic="YES" id="ORv-AL-ErX"/>
+                            <constraint firstItem="sa5-2n-3oI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OKB-yU-tbp"/>
                             <constraint firstItem="e0Z-Nq-t7S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PaW-Z2-7D6"/>
                             <constraint firstItem="yNt-BD-TkK" firstAttribute="centerX" secondItem="yd6-V5-qJW" secondAttribute="centerX" id="T1A-Yi-wuc"/>
-                            <constraint firstItem="yd6-V5-qJW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="UaR-bc-TkL"/>
+                            <constraint firstItem="sa5-2n-3oI" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Try-Kb-hWz"/>
+                            <constraint firstItem="yd6-V5-qJW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UaR-bc-TkL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="e0Z-Nq-t7S" secondAttribute="trailing" id="VgE-X6-nkt"/>
                             <constraint firstItem="yNt-BD-TkK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cNR-vU-uev"/>
                             <constraint firstItem="e0Z-Nq-t7S" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cuA-v5-TDs"/>
-                            <constraint firstItem="9nX-n0-axV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="11" id="dlf-Ee-2Xu"/>
                             <constraint firstItem="yNt-BD-TkK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="93" id="glO-3X-KDs"/>
-                            <constraint firstItem="yd6-V5-qJW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="57" id="jHb-fJ-D1S"/>
+                            <constraint firstItem="sa5-2n-3oI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="h7h-wI-qYm"/>
+                            <constraint firstItem="yd6-V5-qJW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="jHb-fJ-D1S"/>
                             <constraint firstItem="yNt-BD-TkK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XCJ-Zl-xEN" secondAttribute="trailing" id="kOq-fM-nk2"/>
+                            <constraint firstItem="yNt-BD-TkK" firstAttribute="top" secondItem="sa5-2n-3oI" secondAttribute="bottom" constant="49" id="lzH-aS-5Bx"/>
                             <constraint firstItem="yNt-BD-TkK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XCJ-Zl-xEN" secondAttribute="leading" id="own-e1-dVm"/>
                             <constraint firstItem="e0Z-Nq-t7S" firstAttribute="top" secondItem="XCJ-Zl-xEN" secondAttribute="bottom" constant="46" id="syc-XO-Tpv"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yd6-V5-qJW" secondAttribute="bottom" constant="57" id="tml-WH-fIx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yd6-V5-qJW" secondAttribute="bottom" constant="44" id="tml-WH-fIx"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XCJ-Zl-xEN" secondAttribute="trailing" constant="90" id="uvk-QR-cHJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yNt-BD-TkK" secondAttribute="trailing" constant="90" id="vIt-pt-6Kb"/>
                         </constraints>
@@ -99,7 +104,7 @@
                         <outlet property="imagePickerView" destination="yd6-V5-qJW" id="Jgi-PX-RjP"/>
                         <outlet property="imageToolbar" destination="e0Z-Nq-t7S" id="8Np-Kr-Y4s"/>
                         <outlet property="pickImageButton" destination="gIV-eP-dlc" id="epF-MU-dX8"/>
-                        <outlet property="shareButton" destination="9nX-n0-axV" id="3xH-Ol-MCa"/>
+                        <outlet property="shareButton" destination="gtx-eu-9qB" id="waJ-ar-aiO"/>
                         <outlet property="topTextField" destination="yNt-BD-TkK" id="P3w-ag-fgY"/>
                     </connections>
                 </viewController>
