@@ -39,10 +39,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Do any additional setup after loading the view.
     }
     
-    
-    
-    
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         imagePickerView.image = info[.originalImage] as? UIImage
@@ -136,17 +132,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //pick image from photo library
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = .camera
-        present(pickerController, animated: true, completion: nil)
+        pickAnImage(.camera)
     }
     
     //pick image by camera roll button
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
+        pickAnImage(.photoLibrary)
+    }
+    
+    fileprivate func pickAnImage(_ source : UIImagePickerController.SourceType) {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary
+        pickerController.sourceType = source
         present(pickerController, animated: true, completion: nil)
     }
     
