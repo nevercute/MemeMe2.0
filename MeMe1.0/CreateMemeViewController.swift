@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     let topTextFieldDelegate = MemeTextFieldDelegate()
     let bottomTextFieldDelegate = MemeTextFieldDelegate()
@@ -35,7 +35,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareView()
-        
+        cameraButton.isEnabled =  UIImagePickerController.isSourceTypeAvailable(.camera)
         // Do any additional setup after loading the view.
     }
     
@@ -56,7 +56,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        cameraButton.isEnabled =  UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyBoardNotifications()
     }
     
@@ -66,15 +65,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     fileprivate func setTextFieldProps(_ textField: UITextField) {
+        let textAttributes : [NSAttributedString.Key : Any] = [
+            .strokeColor: UIColor.black,
+            .foregroundColor: UIColor.white,
+            .strikethroughColor: UIColor.white,
+            .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            .strokeWidth: -4.0
+        ]
         textField.adjustsFontSizeToFitWidth = true
         textField.textAlignment = .center
-        textField.defaultTextAttributes = [
-            NSAttributedString.Key.strokeColor: UIColor.black,
-            NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.strikethroughColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSAttributedString.Key.strokeWidth: -4.0
-        ]
+        textField.defaultTextAttributes = textAttributes
+        textField.allowsEditingTextAttributes = true
     }
     
     @objc fileprivate func keyboardWillShow(_ notification: Notification) {
@@ -86,7 +87,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @objc fileprivate func keyboardWillHide(_ notification: Notification) {
         if bottomTextField.isEditing {
-            view.frame.origin.y = 20
+            view.frame.origin.y = 0
         }
     }
     
@@ -151,11 +152,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //share image action
     @IBAction func share() {
         memeImage = generateImage()
-        let meme = Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, image: imagePickerView.image!, memedImage: memeImage)
-        print(meme)
-        
         let activity = UIActivityViewController(activityItems: [memeImage!], applicationActivities: nil)
         show(activity, sender: self)
+        activity.completionWithItemsHandler = {(activity, completed, items, error) in
+            if (!completed){
+                self.dismiss(animated: true, completion: nil)
+                return
+            }
+        }
         
     }
     
