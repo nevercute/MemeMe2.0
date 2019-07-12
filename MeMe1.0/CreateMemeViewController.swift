@@ -11,8 +11,9 @@ import Foundation
 
 class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-    let topTextFieldDelegate = MemeTextFieldDelegate()
-    let bottomTextFieldDelegate = MemeTextFieldDelegate()
+    let textFieldDelegate = MemeTextFieldDelegate()
+    
+    //MARK: outlets
     
     @IBOutlet weak var shareButton: UIBarButtonItem!
     
@@ -28,6 +29,7 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBOutlet weak var bottomTextField: UITextField!
     
+    @IBOutlet weak var topToolbar: UIToolbar!
     var memeImage: UIImage!
     
     
@@ -72,15 +74,15 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
             .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
             .strokeWidth: -4.0
         ]
+        textField.defaultTextAttributes = textAttributes
         textField.adjustsFontSizeToFitWidth = true
         textField.textAlignment = .center
-        textField.defaultTextAttributes = textAttributes
         textField.allowsEditingTextAttributes = true
     }
     
     @objc fileprivate func keyboardWillShow(_ notification: Notification) {
         if bottomTextField.isEditing {
-            view.frame.origin.y = -getKeyboardHeight(notification)+20
+            view.frame.origin.y = -getKeyboardHeight(notification)
             
         }
     }
@@ -108,11 +110,17 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     fileprivate func generateImage() -> UIImage {
+        topToolbar.isHidden = true
+        imageToolbar.isHidden = true
+        
         // Render view to an image
-        UIGraphicsBeginImageContext(self.imagePickerView.frame.size)
-        view.drawHierarchy(in: self.imagePickerView.frame, afterScreenUpdates: true)
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
+        
+        topToolbar.isHidden = false
+        imageToolbar.isHidden = false
         
         return memedImage
     }
@@ -120,8 +128,8 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
     fileprivate func prepareView() {
         
         //Prepare Text fields within image view
-        self.topTextField.delegate = self.topTextFieldDelegate
-        self.bottomTextField.delegate = self.bottomTextFieldDelegate
+        self.topTextField.delegate = self.textFieldDelegate
+        self.bottomTextField.delegate = self.textFieldDelegate
         
         self.setTextFieldProps(self.topTextField)
         self.setTextFieldProps(self.bottomTextField)
@@ -148,19 +156,25 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         present(pickerController, animated: true, completion: nil)
     }
     
-    
     //share image action
     @IBAction func share() {
         memeImage = generateImage()
         let activity = UIActivityViewController(activityItems: [memeImage!], applicationActivities: nil)
         show(activity, sender: self)
         activity.completionWithItemsHandler = {(activity, completed, items, error) in
-            if (!completed){
-                self.dismiss(animated: true, completion: nil)
+            if (completed){
+                self.save()
                 return
             }
         }
-        
+    }
+    
+    fileprivate func save() {
+        let _ = Meme(
+            topText:self.topTextField.text!,
+            bottomText: self.bottomTextField.text!,
+            image: self.imagePickerView.image!,
+            memedImage: memeImage)
     }
     
     

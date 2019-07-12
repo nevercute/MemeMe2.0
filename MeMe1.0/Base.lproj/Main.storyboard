@@ -106,6 +106,7 @@
                         <outlet property="pickImageButton" destination="gIV-eP-dlc" id="epF-MU-dX8"/>
                         <outlet property="shareButton" destination="gtx-eu-9qB" id="waJ-ar-aiO"/>
                         <outlet property="topTextField" destination="yNt-BD-TkK" id="P3w-ag-fgY"/>
+                        <outlet property="topToolbar" destination="sa5-2n-3oI" id="2yf-bq-9BJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
