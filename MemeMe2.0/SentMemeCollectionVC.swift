@@ -11,9 +11,28 @@ import UIKit
 
 class SentMemeCollectionVC: UICollectionViewController {
     
+    //MARK: outlets
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //TODO: Implement flowLayout here.
+        let interitemSpacing:CGFloat = 3.0
+        let lineSpacing:CGFloat = 6.0
+        let navBarHeight = self.navigationController?.navigationBar.frame.size.height ?? 0.0
+        let tabBarHeight = self.tabBarController?.tabBar.frame.size.height ?? 0.0
+        let topSafeAreaHeight = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0.0
+        let bottomSafeAreaHeight = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0.0
+        let widthDimension = (view.frame.size.width - (2 * interitemSpacing)) / 3.0
+        let heightDimension = (view.frame.size.height - (4 * lineSpacing)
+            - navBarHeight - tabBarHeight - topSafeAreaHeight - bottomSafeAreaHeight) / 5.0 as CGFloat
+        
+        flowLayout.sectionFootersPinToVisibleBounds = true
+        flowLayout.minimumInteritemSpacing = interitemSpacing
+        flowLayout.minimumLineSpacing = lineSpacing
+        flowLayout.itemSize = CGSize(width: widthDimension, height: heightDimension)
     }
     
     override func viewWillAppear(_ animated: Bool) {

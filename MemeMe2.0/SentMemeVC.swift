@@ -65,23 +65,23 @@ class SentMemeVC: UITableViewController {
     }
     
     fileprivate func updateMemeSavedDictionary() {
-        let dict = ["savedMemes": SentMemeVC.sentMemes]
-        
-        let dirPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let sentMemeDataFileName = "SentMemes.plist"
-        let pathArray = [dirPath.path, sentMemeDataFileName]
-        let path = "file:/"+pathArray.joined(separator: "/")
-        if let filePath = URL(string: path) {
-            print(filePath)
-            do  {
-                let data = try PropertyListSerialization.data(fromPropertyList: dict, format: PropertyListSerialization.PropertyListFormat.xml, options: 0)
-                FileManager.default.createFile(atPath: path, contents: data, attributes: [:])
-                print("Successfully write")
-                
-            } catch (let err){
-                print(err.localizedDescription)
-            }
-        }
+//        let dict = ["savedMemes": SentMemeVC.sentMemes]
+//        
+//        let dirPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//        let sentMemeDataFileName = "SentMemes.plist"
+//        let pathArray = [dirPath.path, sentMemeDataFileName]
+//        let path = "file:/"+pathArray.joined(separator: "/")
+//        if let filePath = URL(string: path) {
+//            print(filePath)
+//            do  {
+//                let data = try PropertyListSerialization.data(fromPropertyList: dict, format: PropertyListSerialization.PropertyListFormat.xml, options: 0)
+//                FileManager.default.createFile(atPath: path, contents: data, attributes: [:])
+//                print("Successfully write")
+//                
+//            } catch (let err){
+//                print(err.localizedDescription)
+//            }
+//        }
     }
 }
 
