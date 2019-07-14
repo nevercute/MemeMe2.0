@@ -30,9 +30,8 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var bottomTextField: UITextField!
     
     @IBOutlet weak var topToolbar: UIToolbar!
+    
     var memeImage: UIImage!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,6 +108,8 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         topToolbar.isHidden = false
         imageToolbar.isHidden = false
         
+        self.memeImage = memedImage
+        
         return memedImage
     }
     
@@ -127,11 +128,13 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     fileprivate func save() {
-        let _ = Meme(
+        let meme = Meme(
             topText:self.topTextField.text!,
             bottomText: self.bottomTextField.text!,
             image: self.imagePickerView.image!,
             memedImage: memeImage)
+        SentMemeVC.sentMemes.append(meme)
+        
     }
     
     fileprivate func pickAnImage(_ source : UIImagePickerController.SourceType) {
@@ -175,9 +178,9 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         activity.completionWithItemsHandler = {(activity, completed, items, error) in
             if (completed){
                 self.save()
-                self.dismissView(self)
-                return
             }
+            self.dismissView(self)
+            return
         }
     }
     

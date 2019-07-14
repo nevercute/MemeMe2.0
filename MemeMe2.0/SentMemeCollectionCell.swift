@@ -12,5 +12,7 @@ import UIKit
 class SentMemeCollectionCell: UICollectionViewCell {
     
     //MARK: collection sent meme view cell
+    @IBOutlet weak var topTextLabel: UILabel!
     @IBOutlet weak var sentMemeImage: UIImageView!
+    @IBOutlet weak var bottomTextLabel: UILabel!
 }

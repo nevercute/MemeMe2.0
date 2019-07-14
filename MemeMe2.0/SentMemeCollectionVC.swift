@@ -11,35 +11,39 @@ import UIKit
 
 class SentMemeCollectionVC: UICollectionViewController {
     
-    //MARK: set sent memes
-    var sentMemes = [Meme]()
-    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView.reloadData()
+        print(SentMemeVC.sentMemes.count)
+    }
+    
     //MARK: setup collection view cells
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.sentMemes.count
+        return SentMemeVC.sentMemes.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SentMemeCollectionCell", for: indexPath) as! SentMemeCollectionCell
-        let sentMeme = self.sentMemes[(indexPath as NSIndexPath).row]
+        let sentMeme = SentMemeVC.sentMemes[(indexPath as NSIndexPath).row]
         
         // Set the image
         cell.sentMemeImage.image = sentMeme.memedImage
+        cell.topTextLabel.text = sentMeme.topText
+        cell.bottomTextLabel.text = sentMeme.bottomText
         return cell
     }
     
     //MARK: setuo detail view and push
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath:IndexPath) {
-        
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "SentMemeDetailVC") as! SentMemeDetailVC
-        detailController.sentMeme = self.sentMemes[(indexPath as NSIndexPath).row]
+        detailController.sentMeme = SentMemeVC.sentMemes[(indexPath as NSIndexPath).row]
         self.navigationController!.pushViewController(detailController, animated: true)
         
     }
