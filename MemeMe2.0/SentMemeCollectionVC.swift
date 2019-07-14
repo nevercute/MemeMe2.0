@@ -19,7 +19,6 @@ class SentMemeCollectionVC: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.collectionView.reloadData()
-        print(SentMemeVC.sentMemes.count)
     }
     
     //MARK: setup collection view cells

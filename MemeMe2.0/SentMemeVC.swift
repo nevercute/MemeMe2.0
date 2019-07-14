@@ -15,15 +15,27 @@ class SentMemeVC: UITableViewController {
     
     //MARK: static meme var
     static var sentMemes = [Meme]()
- 
+    
     //MARK: lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //read saved memes. Just now it is not finished. But I'll do it later. Thanks to you all, guys! Jast omit this comments, please
+//        let sentMemePlistPaths = Bundle.main.paths(forResourcesOfType: "plist", inDirectory: nil)
+//        for plistPath in sentMemePlistPaths {
+//            if (plistPath as NSString).lastPathComponent == "SentMemes.plist" {
+//                if let sentMemeDictionary = NSDictionary(contentsOfFile: plistPath) as? [String : AnyObject] {
+//                    print(sentMemeDictionary)
+//                }
+//
+//            }
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
+        self.updateMemeSavedDictionary()
     }
     
     
@@ -52,4 +64,25 @@ class SentMemeVC: UITableViewController {
         self.navigationController!.pushViewController(detailController, animated: true)
     }
     
+    fileprivate func updateMemeSavedDictionary() {
+        let dict = ["savedMemes": SentMemeVC.sentMemes]
+        
+        let dirPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let sentMemeDataFileName = "SentMemes.plist"
+        let pathArray = [dirPath.path, sentMemeDataFileName]
+        let path = "file:/"+pathArray.joined(separator: "/")
+        if let filePath = URL(string: path) {
+            print(filePath)
+            do  {
+                let data = try PropertyListSerialization.data(fromPropertyList: dict, format: PropertyListSerialization.PropertyListFormat.xml, options: 0)
+                FileManager.default.createFile(atPath: path, contents: data, attributes: [:])
+                print("Successfully write")
+                
+            } catch (let err){
+                print(err.localizedDescription)
+            }
+        }
+    }
 }
+
+
