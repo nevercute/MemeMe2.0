@@ -80,19 +80,6 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         textField.allowsEditingTextAttributes = true
     }
     
-    @objc fileprivate func keyboardWillShow(_ notification: Notification) {
-        if bottomTextField.isEditing {
-            view.frame.origin.y = -getKeyboardHeight(notification)
-            
-        }
-    }
-    
-    @objc fileprivate func keyboardWillHide(_ notification: Notification) {
-        if bottomTextField.isEditing {
-            view.frame.origin.y = 0
-        }
-    }
-    
     fileprivate func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
@@ -139,6 +126,37 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
     
+    fileprivate func save() {
+        let _ = Meme(
+            topText:self.topTextField.text!,
+            bottomText: self.bottomTextField.text!,
+            image: self.imagePickerView.image!,
+            memedImage: memeImage)
+    }
+    
+    fileprivate func pickAnImage(_ source : UIImagePickerController.SourceType) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.sourceType = source
+        present(pickerController, animated: true, completion: nil)
+    }
+
+    
+    //MARK: actions
+    
+    @objc fileprivate func keyboardWillShow(_ notification: Notification) {
+        if bottomTextField.isEditing {
+            view.frame.origin.y = -getKeyboardHeight(notification)
+            
+        }
+    }
+    
+    @objc fileprivate func keyboardWillHide(_ notification: Notification) {
+        if bottomTextField.isEditing {
+            view.frame.origin.y = 0
+        }
+    }
+    
     //pick image from photo library
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
         pickAnImage(.camera)
@@ -149,13 +167,6 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         pickAnImage(.photoLibrary)
     }
     
-    fileprivate func pickAnImage(_ source : UIImagePickerController.SourceType) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = source
-        present(pickerController, animated: true, completion: nil)
-    }
-    
     //share image action
     @IBAction func share() {
         memeImage = generateImage()
@@ -164,19 +175,15 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         activity.completionWithItemsHandler = {(activity, completed, items, error) in
             if (completed){
                 self.save()
+                self.dismissView(self)
                 return
             }
         }
     }
     
-    fileprivate func save() {
-        let _ = Meme(
-            topText:self.topTextField.text!,
-            bottomText: self.bottomTextField.text!,
-            image: self.imagePickerView.image!,
-            memedImage: memeImage)
+    @IBAction func dismissView(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
-    
     
 }
 
