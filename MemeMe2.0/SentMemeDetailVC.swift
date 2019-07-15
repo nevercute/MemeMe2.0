@@ -19,6 +19,11 @@ class SentMemeDetailVC: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     // MARK: Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        imageView.contentMode = .scaleAspectFit
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true

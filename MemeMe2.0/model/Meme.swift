@@ -6,7 +6,6 @@
 //  Copyright © 2019 NEVERCUTE. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 struct Meme {

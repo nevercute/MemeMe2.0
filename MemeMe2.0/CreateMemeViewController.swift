@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CreateMemeViewController.swift
 //  MeMe1.0
 //
 //  Created by NEVERCUTE on 17/06/2019.
@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Foundation
 
 class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
@@ -37,7 +36,7 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         prepareView()
         cameraButton.isEnabled =  UIImagePickerController.isSourceTypeAvailable(.camera)
-        // Do any additional setup after loading the view.
+        imagePickerView.contentMode = .scaleAspectFit
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -97,8 +96,7 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     fileprivate func generateImage() -> UIImage {
-        topToolbar.isHidden = true
-        imageToolbar.isHidden = true
+        hideBar(true)
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -106,12 +104,16 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        topToolbar.isHidden = false
-        imageToolbar.isHidden = false
+        hideBar(false)
         
         self.memeImage = memedImage
         
         return memedImage
+    }
+    
+    fileprivate func hideBar(_ hide: Bool) {
+        topToolbar.isHidden = hide
+        imageToolbar.isHidden = hide
     }
     
     fileprivate func prepareView() {
