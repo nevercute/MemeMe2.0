@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 
 class MemeTextFieldDelegate: NSObject, UITextFieldDelegate {
-    
-    var fieldText: String = ""
-    
+        
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true;
